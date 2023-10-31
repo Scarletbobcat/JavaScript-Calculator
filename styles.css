@@ -3,3 +3,11 @@ body {
     color: white;
 }
 
+h1 {
+    font-size: 50px;
+}
+
+.numbers {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
