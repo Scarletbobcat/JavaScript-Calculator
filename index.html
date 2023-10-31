@@ -7,48 +7,31 @@
 <body>
     <h1>Calculator</h1>
     <div class="calculator">
-        <div class="answer">
-            <h2 id="answer">Answer: </h1>
+        <div class="answer_container">
+            <h2 id="answer">0</h1>
         </div>
-        <div class="inputs">
-            <div class="numbers">
-                <button>0</button>
-                <button>.</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-            </div>
-            <div class="operations">
-                <button>+</button>
-                <button>-</button>
-                <button>*</button>
-                <button>/</button>
-                <button>Clear</button>
-                <button>=</button>
-                <button>+/-</button>
-            </div>
-        </div>
+        <form id="inputs" class="inputs">
+                <button type="submit" id="c" class="clear">AC</button>
+                <button type="submit" id="n" class="neg">+/-</button>
+                <button type="submit" id="%" class="percent">%</button>
+                <button type="submit" id="/" class="divide">&#xF7</button>
+                <button id="7" class="seven">7</button>
+                <button id="8" class="eight">8</button>
+                <button id="9" class="nine">9</button>
+                <button type="submit" id="*" class="multiply">x</button>
+                <button id="4" class="four">4</button>
+                <button id="5" class="five">5</button>
+                <button id="6" class="six">6</button>
+                <button type="submit" id="-" class="minus">-</button>
+                <button id="1" class="one">1</button>
+                <button id="2" class="two">2</button>
+                <button id="3" class="three">3</button>
+                <button type="submit" id="+" class="plus">+</button>
+                <button id="zero" class="zero">0</button>
+                <button type="submit" id="." class="decimal">.</button>
+                <button type="submit" id="=" class="equal">=</button>
+        </form>
     </div>
-    <!-- <form action="" method="get" id="form">
-        <label for="first_num">Enter First Number: </label>
-        <input type="text" id="first_num" name = "first_num"><br><br>
-        <label for="first_num">Enter Second Number: </label>
-        <input type="text" id="second_num" name = "second_num"><br><br>
-        <label for="operation">Select Operation: </label>
-        <select name="operation" id="operation">
-            <option value="+">+</option>
-            <option value="-">-</option>
-            <option value="/">/</option>
-            <option value="*">*</option>
-        </select> <br> <br>
-        <input type="submit" id="compute" value="Compute"></input><br><br>
-    </form> -->
     <script src="./calc.js"></script>
 </body>
 </html>
