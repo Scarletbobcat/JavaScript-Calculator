@@ -1,31 +1,49 @@
-let compute_button = document.getElementById("compute")
-let num1_input = document.getElementById("first_num")
-let num2_input = document.getElementById("second_num")
-let operation = document.getElementById("operation")
-let answer = document.getElementsByClassName("answer")
-let operator = '+'
+// getting reference to the form by id
+const form = document.getElementById("form")
 
-let num1, num2
+// here, we wait for the "compute" button to be pressed before anything is executed
+// we pass e(event object) which allows us access to prevent the default action
+form.addEventListener("submit", (e) => {
+    // 
+    e.preventDefault()
 
-// detects if there is a change in num1 and num2 input
-num1_input.addEventListener("change", function() {
-    const num1 = this.value
-})
-num2_input.addEventListener("change", function() {
-    const num2 = this.value
-})
+    // getting the values of the form
+    // *notice that we must parse the number inputs because they are input as strings
+    let num1 = parseInt(document.getElementById("first_num").value)
+    let num2 = parseInt(document.getElementById("second_num").value)
+    let operator = document.getElementById("operation").value
+    let answer = document.getElementById("answer")
 
-// detects change in operator
-operation.addEventListener("change", function() {
-    const operator = this.value
-})
-
-
-// calculates two operand operation
-compute_button.addEventListener("click", function() {
-    if (operator === '+') {
-        let result = num1 + num2
-        answer.innerHTML(result)
-        console.log(result)
+    // this will reset the answer cell to empty
+    answer.innerHTML = "Answer: "
+    let result
+    
+    // checking if either one is not a number
+    if (isNaN(num1) || isNaN(num2)) {
+        alert("First or Second number is not a number")
+    } else {
+        // take action depending on what the operator is
+        switch(operator){
+            case '+':
+                result = num1+num2
+                answer.innerHTML += " " + result
+                break
+            case '-':
+                result = num1-num2
+                answer.innerHTML += " " + result
+                break
+            case '*':
+                result = num1*num2
+                answer.innerHTML += " " + result
+                break
+            case '/':
+                if (num2 != 0){
+                    result = num1/num2
+                    answer.innerHTML += " " + result
+                } else {
+                    alert("Error - cannot divide by 0")
+                }
+                break
+        }
     }
 })
