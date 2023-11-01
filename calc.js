@@ -1,17 +1,11 @@
 // getting reference to the form by id
 const form = document.getElementById("inputs")
-let num1 = 0, num2, operator
+let num1 = 0, num2, operator, result
 let buttons = document.getElementsByTagName("button")
 let fNum = true
 
 // here, we wait for the "compute" button to be pressed before anything is executed
 // we pass e(event object) which allows us access to prevent the default action
-form.addEventListener("submit", (e) => {
-    // 
-    e.preventDefault()
-
-
-})
 
 function clearScreen() {
     num1 = 0
@@ -43,12 +37,12 @@ for(let i = 0; i < buttons.length; i++) {
                 case '+/-':
                     if(fNum) {
                         num1 = parseFloat(answer.innerHTML)
-                        answer.innerHTML = "-" + num1
                         num1 = -num1
+                        answer.innerHTML = num1
                     } else {
                         num2 = parseFloat(answer.innerHTML)
-                        answer.innerHTML = "-" + num2
                         num2 = -num2
+                        answer.innerHTML = num2
                     }
                     break
                 case '%':
@@ -65,8 +59,13 @@ for(let i = 0; i < buttons.length; i++) {
                 case 'x':
                 case '-':
                 case '+':
-                    num1 += parseFloat(answer.innerHTML)
-                    answer.innerHTML = num1
+                    if(fNum) {
+                        num1 = parseFloat(answer.innerHTML)
+                        answer.innerHTML = num1
+                        fNum = false
+                    } else {
+                        answer.innerHTML = parseFloat(answer.innerHTML) + num1
+                    }
                 case '=':
                 case '.':
             }
