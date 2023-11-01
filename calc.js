@@ -3,11 +3,12 @@ class Calculator {
     // constructor calls the clear function
     constructor() {
         this.clear()
+        this.updateDisplay()
     }
 
     // clear sets all operands to empty and the operation to null
     clear() {
-        this.currentOperand = ''
+        this.currentOperand = '0'
         this.previousOperand = ''
         this.operation = null
     }
@@ -17,6 +18,10 @@ class Calculator {
     appendNumber(number) {
         if(this.currentOperand.includes('.') && number === '.') 
             return
+        if(this.currentOperand === '0') {
+            this.currentOperand = number.toString()
+            return
+        }
         this.currentOperand += number.toString()
     }
 
@@ -36,7 +41,6 @@ class Calculator {
             this.compute()
         }
         this.previousOperand = this.currentOperand
-        this.currentOperand = ''
     }
 
     // updates the screen of the calculator to display currentOperand
@@ -83,9 +87,9 @@ class Calculator {
             default:
                 break
         }
+        this.previousOperand = this.currentOperand
         this.currentOperand = result.toString()
         this.operation = null
-        this.previousOperand = ''
         this.updateDisplay()
     }
 }
