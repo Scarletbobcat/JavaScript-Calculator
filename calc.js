@@ -1,74 +1,105 @@
-// getting reference to the form by id
-const form = document.getElementById("inputs")
-let num1 = 0, num2, operator, result
-let buttons = document.getElementsByTagName("button")
-let fNum = true
+class Calculator {
+    constructor() {
+        this.clear()
+    }
 
-// here, we wait for the "compute" button to be pressed before anything is executed
-// we pass e(event object) which allows us access to prevent the default action
+    clear() {
+        this.currentOperand = ''
+        this.previousOperand = ''
+        this.operation = null
+    }
 
-function clearScreen() {
-    num1 = 0
-    num2 = null
-    operator = null
-    answer.innerHTML = "0"
-    fNum = true
-}
+    appendNumber(number) {
+        if(this.currentOperand.includes('.') && number === '.') 
+            return
+        this.currentOperand += number.toString()
+    }
 
-for(let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function(e) {
-        e.preventDefault()
-        console.log(num1 ,"\n", num2)
-        if(!isNaN(parseInt(buttons[i].innerHTML))) {
-            if (answer.innerHTML === "0" || answer.innerHTML === "-0") {
-                let answer = document.getElementById("answer")
-                answer.innerHTML = parseInt(buttons[i].innerHTML)
-            } else {
-                answer.innerHTML += parseInt(buttons[i].innerHTML)
-            }
-        } else {
-
-            operator = buttons[i].innerHTML
-
-            switch (operator) {
-                case 'AC':
-                    clearScreen()
-                    break
-                case '+/-':
-                    if(fNum) {
-                        num1 = parseFloat(answer.innerHTML)
-                        num1 = -num1
-                        answer.innerHTML = num1
-                    } else {
-                        num2 = parseFloat(answer.innerHTML)
-                        num2 = -num2
-                        answer.innerHTML = num2
-                    }
-                    break
-                case '%':
-                    if(fNum) {
-                        num1 = parseFloat(answer.innerHTML)/100
-                        answer.innerHTML = num1
-                    } else {
-                        num2 = parseFloat(answer.innerHTML)/100
-                        answer.innerHTML = num2
-                    }
-                    break
-                case '&#xF7':
-
-                case 'x':
-                case '-':
-                case '+':
-                    if(fNum) {
-                        num1 = parseFloat(answer.innerHTML)
-                        answer.innerHTML = num1
-                        fNum = false
-                    } else {
-                        answer.innerHTML = parseFloat(answer.innerHTML) + num1
-                    }
-                case '=':
-                case '.':
-            }
+    chooseOperation(operand) {
+        if(this.currentOperand === '') return
+        if(this.previousOperand !== '') {
+            this.compute()
         }
-    })
+        this.operation = operand.toString()
+        if (this.operation === '%' || this.operation === '+/-') {
+            this.compute()
+        }
+        this.previousOperand = this.currentOperand
+        this.currentOperand = ''
+    }
+
+    updateDisplay() {
+        answer.innerHTML = this.currentOperand
+    }
+
+    compute() {
+        console.log(this.currentOperand)
+        console.log(this.previousOperand)
+        console.log(this.operation)
+        let result
+        let prev = parseFloat(this.previousOperand)
+        let curr = parseFloat(this.currentOperand)
+        if ((isNaN(prev) || isNaN(curr)) && !(this.operation === '%' || this.operation === '+/-')) {
+            return
+        }
+        switch(this.operation) {
+            case '+':
+                result = prev + curr
+                break
+            case '-':
+                result = prev - curr
+                break
+            case 'x':
+                result = prev * curr
+                break
+            case '÷':
+                result = prev / curr
+                break
+            case '%': 
+                result = curr / 100
+                break
+            case '+/-':
+                result = -curr
+                break
+            default:
+                break
+        }
+        this.currentOperand = result.toString()
+        this.operation = null
+        this.previousOperand = ''
+        this.updateDisplay()
+    }
 }
+
+// getting reference to the form by id
+const numberButtons = document.querySelectorAll("[data-number]")
+const operationButtons = document.querySelectorAll("[data-operation]")
+const equalsButton = document.querySelector("[data-equals]")
+const allClearButton = document.querySelector("[data-all-clear]")
+let answer = document.getElementById("answer")
+
+const calculator = new Calculator()
+
+numberButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        calculator.appendNumber(button.innerHTML)
+        calculator.updateDisplay()
+    })
+})
+
+operationButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        calculator.chooseOperation(button.innerHTML)
+        calculator.updateDisplay
+    })
+})
+
+allClearButton.addEventListener("click", button => {
+    calculator.clear()
+    calculator.updateDisplay()
+})
+
+equalsButton.addEventListener("click", button => {
+    calculator.compute()
+    calculator.updateDisplay()
+})

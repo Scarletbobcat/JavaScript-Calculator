@@ -8,29 +8,29 @@
     <h1>Calculator</h1>
     <div class="calculator">
         <div class="answer_container">
-            <h2 id="answer">0</h1>
+            <h2 id="answer"></h1>
         </div>
-        <form id="inputs" class="inputs">
-                <button type="submit" id="c" class="clear">AC</button>
-                <button type="submit" id="n" class="neg">+/-</button>
-                <button type="submit" id="%" class="percent">%</button>
-                <button type="submit" id="/" class="divide">&#xF7</button>
-                <button id="7" class="seven">7</button>
-                <button id="8" class="eight">8</button>
-                <button id="9" class="nine">9</button>
-                <button type="submit" id="*" class="multiply">x</button>
-                <button id="4" class="four">4</button>
-                <button id="5" class="five">5</button>
-                <button id="6" class="six">6</button>
-                <button type="submit" id="-" class="minus">-</button>
-                <button id="1" class="one">1</button>
-                <button id="2" class="two">2</button>
-                <button id="3" class="three">3</button>
-                <button type="submit" id="+" class="plus">+</button>
-                <button id="zero" class="zero">0</button>
-                <button type="submit" id="." class="decimal">.</button>
-                <button type="submit" id="=" class="equal">=</button>
-        </form>
+        <div id="inputs" class="inputs">
+                <button data-all-clear id="c" class="clear">AC</button>
+                <button data-operation id="n" class="neg">+/-</button>
+                <button data-operation id="%" class="percent">%</button>
+                <button data-operation id="/" class="divide">÷</button>
+                <button data-number id="7" class="seven">7</button>
+                <button data-number id="8" class="eight">8</button>
+                <button data-number id="9" class="nine">9</button>
+                <button data-operation id="*" class="multiply">x</button>
+                <button data-number id="4" class="four">4</button>
+                <button data-number id="5" class="five">5</button>
+                <button data-number id="6" class="six">6</button>
+                <button data-operation id="-" class="minus">-</button>
+                <button data-number id="1" class="one">1</button>
+                <button data-number id="2" class="two">2</button>
+                <button data-number id="3" class="three">3</button>
+                <button data-operation id="+" class="plus">+</button>
+                <button data-number id="zero" class="zero">0</button>
+                <button data-number id="." class="decimal">.</button>
+                <button data-equals id="=" class="equal">=</button>
+        </div>
     </div>
     <script src="./calc.js"></script>
 </body>
