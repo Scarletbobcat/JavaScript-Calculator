@@ -35,12 +35,12 @@ class Calculator {
         }
         // saves operand into operation
         this.operation = operand.toString()
-        // allows the operation to convert the currentOperand to negative or a percentage of 100
-        // not fully functional yet
         if (this.operation === '%' || this.operation === '+/-') {
             this.compute()
+        } else {
+            this.previousOperand = this.currentOperand
+            this.currentOperand = ''
         }
-        this.previousOperand = this.currentOperand
     }
 
     // updates the screen of the calculator to display currentOperand
@@ -54,14 +54,11 @@ class Calculator {
 
     // does the calculation depending on the operand
     compute() {
-        console.log(this.currentOperand)
-        console.log(this.previousOperand)
-        console.log(this.operation)
 
-        let result
+        let result = this.currentOperand
         let prev = parseFloat(this.previousOperand)
         let curr = parseFloat(this.currentOperand)
-        if ((isNaN(prev) || isNaN(curr)) && !(this.operation === '%' || this.operation === '+/-')) {
+        if ((isNaN(prev) || isNaN(curr)) && (this.operation !== '%' && this.operation !== '+/-')) {
             return
         }
 
@@ -87,7 +84,7 @@ class Calculator {
             default:
                 break
         }
-        this.previousOperand = this.currentOperand
+        this.previousOperand = ''
         this.currentOperand = result.toString()
         this.operation = null
         this.updateDisplay()
