@@ -53,8 +53,8 @@ button {
     color: white;
 }
 
-.multiply:active, .divide:active, .minus:active, .add:active, .equal:active, .plus:active {
-    background-color: #fcb762;
+.multiply:focus, .divide:focus, .minus:focus, .add:focus, .equal:active, .plus:focus {
+    background-color: #ffcc8a;
 }
 
 .percent, .neg, .clear {

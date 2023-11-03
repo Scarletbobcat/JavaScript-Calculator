@@ -35,6 +35,7 @@ class Calculator {
         }
         // saves operand into operation
         this.operation = operand.toString()
+        // this works only for the first operand
         if (this.operation === '%' || this.operation === '+/-') {
             this.compute()
         } else {
