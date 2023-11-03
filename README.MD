@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a calculator web app that I created to practice javascript. It is meant to emulate the apple calculator app.
+This is a calculator web app that I created to practice javascript. It is meant to emulate the apple iPhone calculator app.
 
 ## Constraints
 
